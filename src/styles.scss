@@ -139,22 +139,6 @@
   --color-status-unapproved-text: #d93025;
 }
 
-.dark-theme {
-  --color-background: #18181b;
-  --color-surface: #23232a;
-  --color-text: #f3f4f6;
-  --color-primary: #60a5fa;
-  --color-secondary: #a1a1aa;
-  --color-accent: #fbbf24;
-  --color-border: #27272a;
-  --color-card: #23232a;
-  --color-card-shadow: 0 1px 3px 0 rgba(0,0,0,0.4);
-  --color-status-approved-bg: #234d36;
-  --color-status-approved-text: #6ee7b7;
-  --color-status-unapproved-bg: #3f1d1d;
-  --color-status-unapproved-text: #fca5a5;
-}
-
 /* Responsive design */
 @media (max-width: 768px) {
   .container {

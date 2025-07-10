@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
+import { RegisterComponent } from '../app/authentication/register/register.component';
 
 export const routes: Routes = [
     {
@@ -40,6 +41,6 @@ export const routes: Routes = [
     },
     {
         path: 'register',
-        loadComponent: () => import('../app/authentication/register/register.component').then(m => m.RegisterComponent)
+        component: RegisterComponent
     }
 ];

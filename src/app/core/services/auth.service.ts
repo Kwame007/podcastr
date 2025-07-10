@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { LoginCredentials, AuthResponse, User, RegisterCredentials } from '../model/model';
+import { Router } from '@angular/router';
+import { NgZone } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,7 @@ export class AuthService {
   private readonly USER_KEY = 'podcast_user';
   readonly baseUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router, private ngZone: NgZone) {}
   
    register(data: RegisterCredentials): Observable<any> {
     return this.http.post(`${this.baseUrl}/register`, data).pipe(
@@ -69,5 +71,18 @@ export class AuthService {
   hasValidToken(): boolean {
     const token = this.getToken();
     return !!token;
+  }
+
+  logout(): void {
+    this.http.post(`${this.baseUrl}/login`, {}).subscribe({
+      next: () => {
+        this.clearAuthData();
+        window.location.href = '/login';
+      },
+      error: () => {
+        this.clearAuthData();
+        window.location.href = '/login';
+      }
+    });
   }
 }

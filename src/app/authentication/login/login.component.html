@@ -1,40 +1,38 @@
-<div class="login-container">
-  <h2>Login</h2>
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input
-        id="email"
-        type="email"
-        class="form-control"
-        formControlName="email"
-        [class.is-invalid]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
-      />
-      <div *ngIf="loginForm.get('email')?.errors?.['required'] && loginForm.get('email')?.touched" class="invalid-feedback">
-        Email is required.
-      </div>
-      <div *ngIf="loginForm.get('email')?.errors?.['email'] && loginForm.get('email')?.touched" class="invalid-feedback">
-        Invalid email.
-      </div>
+<div class="auth-bg">
+  <div class="auth-card">
+    <div class="auth-logo">
+      <span class="logo-icon">🗂️</span>
+      <span class="logo-text">Rantr</span>
     </div>
-
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input
-        id="password"
-        type="password"
-        class="form-control"
-        formControlName="password"
-        [class.is-invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
-      />
-      <div *ngIf="loginForm.get('password')?.errors?.['required'] && loginForm.get('password')?.touched" class="invalid-feedback">
-        Password is required.
+    <h2 class="auth-title">Welcome back</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <!-- <label for="email">Email</label> -->
+        <input id="email" type="email" formControlName="email" placeholder="m@example.com"
+          [class.is-invalid]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" />
+        <div *ngIf="loginForm.get('email')?.errors?.['required'] && loginForm.get('email')?.touched" class="invalid-feedback">
+          Email is required.
+        </div>
+        <div *ngIf="loginForm.get('email')?.errors?.['email'] && loginForm.get('email')?.touched" class="invalid-feedback">
+          Invalid email.
+        </div>
       </div>
-      <div *ngIf="loginForm.get('password')?.errors?.['minlength'] && loginForm.get('password')?.touched" class="invalid-feedback">
-        Password must be at least 6 characters.
+      <div class="form-group password-row">
+        <!-- <label for="password">Password</label> -->
+        <!-- <a class="forgot-link" href="#">Forgot your password?</a> -->
+        <input id="password" type="password" formControlName="password" placeholder="Password" 
+          [class.is-invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" />
+        <div *ngIf="loginForm.get('password')?.errors?.['required'] && loginForm.get('password')?.touched" class="invalid-feedback">
+          Password is required.
+        </div>
+        <div *ngIf="loginForm.get('password')?.errors?.['minlength'] && loginForm.get('password')?.touched" class="invalid-feedback">
+          Password must be at least 6 characters.
+        </div>
       </div>
+      <button type="submit" class="login-btn" [disabled]="loginForm.invalid">Login</button>
+    </form>
+    <div class="auth-footer">
+      Don't have an account? <a class="signup-link" routerLink="/register" style="cursor: pointer;">Sign up</a>
     </div>
-
-    <p-button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Login</p-button>
-  </form>
+  </div>
 </div>

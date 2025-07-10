@@ -1,1 +1,26 @@
-<p>playlists works!</p>
+<div class="playlist-header" style="display: flex; justify-content: space-between; align-items: center; padding: 1rem;">
+  <div style="display: flex; gap: 1rem; align-items: center;">
+    <button type="button" class="create-playlist-btn">Create Playlist</button>
+    <input type="text" class="playlist-search-input" placeholder="Search playlists..." />
+  </div>
+</div>
+<div class="playlist-table-container">
+  <h1>Playlist</h1>
+  <table *ngIf="!loading && !error" class="episodes-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Created At</th>
+        <th>Episodes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let playlist of playlists">
+        <app-playlist-item [playlist]="playlist"></app-playlist-item>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="loading" class="skeleton-container">Loading...</div>
+  <div *ngIf="error && !loading" class="error-container">{{ error }}</div>
+</div>

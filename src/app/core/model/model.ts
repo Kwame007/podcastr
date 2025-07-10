@@ -79,3 +79,65 @@ export interface TeamResponse {
   };
 }
 
+
+
+export interface Playlist {
+  id: number;
+  name: string;
+  description: string;
+  created_at: string; // ISO 8601 date string
+  updated_at: string;
+  episodes:number[]
+}
+export interface PaginationLink {
+  url: string | null;
+  label: string;
+  active: boolean;
+}
+export interface PlaylistResponseData {
+  current_page: number;
+  data: Playlist[];
+  first_page_url: string;
+  from: number;
+  last_page: number;
+  last_page_url: string;
+  links: PaginationLink[];
+  next_page_url: string | null;
+  path: string;
+  per_page: number;
+  prev_page_url: string | null;
+  to: number;
+  total: number;
+}
+export interface PlaylistListApiResponse {
+  status: string; // "success"
+  data: PlaylistResponseData
+}
+export interface PostPlaylistData{
+  name: string,
+  description: string
+}
+export interface PostPlaylistApiResponse{
+  status: string; // e.g. "success"
+  data: Playlist;
+}
+export interface PlaylistEditData{
+  name: string,
+  description: string
+}
+export interface PlaylistDeleteResponse{
+  status: string,
+  message: string
+}
+export interface EpisodeIdsPayload {
+  episode_ids: number[];
+}
+export interface AddEpisodesResponseData {
+  playlist_id: number;
+  added_episode_ids: number[];
+}
+export interface AddEpisodeToPlaylistApiResponse{
+  status: string; // e.g. "success"
+  message: string; // e.g. "Episodes added successfully."
+  data: AddEpisodesResponseData;
+}

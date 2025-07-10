@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import * as AuthActions from '../../store/auth/auth.actions';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,9 +12,9 @@ import * as AuthActions from '../../store/auth/auth.actions';
   styleUrl: './sidebar.component.scss'
 })
 export class SidebarComponent {
-  private store = inject(Store);
+  private authService = inject(AuthService);
 
   logout() {
-    this.store.dispatch(AuthActions.logout());
+    this.authService.logout();
   }
 }
